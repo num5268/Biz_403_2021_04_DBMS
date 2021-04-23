@@ -1,0 +1,13 @@
+--여기는 iolistDB
+
+CREATE TABLESPACE iolistDB
+DATAFILE 'C:/oraclexe/data/iolistDB'
+SIZE 1M AUTOEXTEND ON NEXT 1K;
+
+CREATE USER iouser IDENTIFIED BY iouser
+DEFAULT TABLESPACE iolistDB;
+
+
+
+
+

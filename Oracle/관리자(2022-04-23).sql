@@ -1,0 +1,10 @@
+-- table만들기
+
+CREATE TABLESPACE schoolDB1
+DATAFILE 'C:\oraclexe\data/shool1.dbf'
+SIZE 1M AUTOEXTEND ON NEXT 1K;
+
+CREATE USER school1 IDENTIFIED BY school1
+DEFAULT TABLESPACE schoolDB1;
+
+GRANT DBA TO school1;
