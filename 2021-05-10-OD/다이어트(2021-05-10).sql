@@ -22,7 +22,10 @@ CREATE TABLE tbl_items(
     it_icode	CHAR(4)		PRIMARY KEY,
     it_iname	nVARCHAR2(10)	NOT NULL	
 );
+DROP TABLE TBL_foods;
 DROP TABLE TBL_COMPANY;
+DROP TABLE TBL_items;
+DROP TABLE TBL_MYFOODS;
 
 ALTER TABLE tbl_foods
 ADD CONSTRAINT fk_company
@@ -55,7 +58,7 @@ CREATE VIEW view_식품정보 AS(
             ON F.fd_clcode = i.it_icode
 );
 DROP VIEW view_식품정보;
-
+DROP VIEW view_섭취정보;
 CREATE TABLE tbl_myfoods(
     mf_isbn CHAR(6) PRIMARY KEY,
     mf_date VARCHAR2(15) NOT NULL,
@@ -83,19 +86,18 @@ INSERT INTO tbl_myfoods(mf_isbn, mf_date, mf_code, mf_intk )
 INSERT INTO tbl_myfoods(mf_isbn, mf_date, mf_code, mf_intk )
     VALUES ('0004','2021-05-09','PD01001',1);
 
+DROP VIEW view_섭취정보;
 CREATE VIEW view_섭취정보 AS(
     SELECT MF.mf_isbn AS 일련번호,
             MF.mf_date AS 날짜,
             mf.mf_code AS 식품코드,
             MF.mf_intk AS 섭취량
-           
     FROM tbl_myfoods MF
         LEFT JOIN tbl_foods FD
             ON mf.mf_code = fd.fd_fcode
 );
 
-SELECT 
-        MF.mf_date AS 날짜,
+SELECT MF.mf_date AS 날짜,
         fd.fd_fname AS 식품명,
         MF.mf_intk AS 섭취량,
         fd.fd_capa AS 총내용량,
